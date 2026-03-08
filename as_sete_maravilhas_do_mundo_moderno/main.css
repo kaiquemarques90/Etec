@@ -1,0 +1,132 @@
+#Menu {
+
+    text-align: center;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.4), rgba(243, 243, 243, 0.4));/* RGBA para um fundo semi-transparente */
+    padding: 20px;
+    border-style: solid;
+    border-radius: 17px;
+    border-color: rgb(255, 255, 255);
+    margin: 50px;
+    margin-top: 10px;
+    border-width: 1px;/* Largura da borda */
+}
+
+#Menu a {
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    padding: 1px;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: rgba(13, 83, 60, 0);
+    text-align: center;
+    display: inline-block; /* Para que o padding funcione corretamente */
+    text-decoration: none;
+    border-radius: 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10px;
+    font-size: 20px;
+}
+
+body {
+    overflow: auto; /* Overflow basicamente é o controle de um elemento que ultrapassa o limite da caixa, ou seja, o que acontece quando o conteúdo é maior do que a caixa. 
+    O auto é o valor padrão, ou seja, ele mostra as barras de rolagem apenas quando necessário. 
+    O hidden esconde o conteúdo que ultrapassa a caixa. 
+    O scroll sempre mostra as barras de rolagem, mesmo que não sejam necessárias. O visible é o valor padrão para a maioria dos elementos, ou seja, ele permite que o conteúdo ultrapasse a caixa e seja visível. */
+    min-height: 100vh; /* Garante que o corpo tenha pelo menos a altura da janela de visualização 
+    vh basicamente é ViewPort height ou seja a altura da janela de visualização do dispositivo do usuário */
+}
+
+body::before {
+    content: "";
+    position: fixed; /* O *static* faz com que o elemento siga naturalmente o fluxo do site.
+    o *relative* é o mesmo que static porém pode ser empurrado para cima, lado e baixo.
+    o *absolute* permite com que possa ser posicionado em qualquer canto da tela sem
+    seguir o fluxo normal do site.
+    *fixed* é o mesmo que absolute porém ele fica no mesmo local mesmo que scrollamos para 
+    baixo ou para cima.
+    *sticky* que faz com que siga o scroll normalmente até certo ponto que ele fica fixed.*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Coloca a imagem de fundo atrás do conteúdo */
+    background-image: url("https://lens.usercontent.google.com/banana?agsi=CmdnbG9iYWw6OjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAwZWI6MTpkZTFlNDRiZTQ0NTYyMjFlOjAwMDA1NWNmZWM3MDAyNmQ6MDAwMDAxZTY3MjIwMzM2ODowMDA2NGM3MTU4NGNkNjFmEAI=");
+    filter: blur(8px);
+}
+
+#Titulo {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-weight: lighter;
+    text-shadow: 2px 2px 8px rgb(0, 0, 0);
+    font-size: 60px;
+    margin: 1px;
+    letter-spacing: 2px;
+    padding-top: 45px;
+    padding-bottom: 20px;
+}
+
+#Menu a:hover {
+    background-color: rgba(83, 13, 13, 0);
+    color: rgb(212, 121, 93);
+    transition: 0.3s;
+    text-decoration: underline;
+    text-underline-offset: 8px;
+}
+
+#caixa-de-detalhes {
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 20px;
+    margin-left: 70px;
+    margin-right: 70px;
+    overflow: hidden;
+    gap: 20px;
+}
+
+.titulo-detalhes {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10px;
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    
+}
+
+.detalhes {
+    text-align: justify;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    text-align: left;
+
+}
+
+.imagens {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    align-items: right;
+}
+
+.conteudo-alinhado {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+#rodape {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 10px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
