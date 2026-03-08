@@ -7,7 +7,7 @@ function mostrarMaravilha(none) {
         caixa.innerHTML = `
         <h2 class="titulo-detalhes">Cristo Redentor</h2>
         <div class="conteudo-alinhado">
-            <p class="detalhes">O Cristo Redentor é uma estátua de Jesus Cristo localizada no topo do Morro do Corcovado, no Rio de Janeiro, Brasil. Com 30 metros de altura e braços estendidos, a estátua é um símbolo icônico da cidade e do país. Inaugurada em 1931, o Cristo Redentor é uma das sete maravilhas do mundo moderno e atrai milhões de visitantes todos os anos, oferecendo vistas panorâmicas deslumbrantes da cidade e da Baía de Guanabara.</p>
+            <p class="detalhes">O Cristo Redentor é uma estátua de Jesus Cristo localizada no topo do <strong>Morro do Corcovado</strong><strong>, no Rio de Janeiro, Brasil.</strong> Com 30 metros de altura e braços estendidos, a estátua é um símbolo icônico da cidade e do país. Inaugurada em 1931, o Cristo Redentor é uma das sete maravilhas do mundo moderno e atrai milhões de visitantes todos os anos, oferecendo vistas panorâmicas deslumbrantes da cidade e da Baía de Guanabara.</p>
             <img class="imagens" src="https://agendadopoder.com.br/wp-content/uploads/2025/02/cristoranking.jpg" alt="Cristo Redentor">
         </div>
         <footer id="rodape">
@@ -53,10 +53,10 @@ function mostrarMaravilha(none) {
     }
     else if (none === 'Colisseu de Roma') {
         caixa.innerHTML = `
-            <h2 class="titulo-detalhes">Colisseu de Roma</h2>
+            <h2 class="titulo-detalhes">Coliseu de Roma</h2>
             <div class="conteudo-alinhado">
-                <p class="detalhes">O Colisseu de Roma, também conhecido como Anfiteatro Flaviano, é um dos monumentos mais icônicos da Roma Antiga. Construído no século I d.C., o Colisseu era usado para eventos públicos, como lutas de gladiadores e espetáculos. Com capacidade para cerca de 50.000 espectadores, o Colisseu é uma das sete maravilhas do mundo moderno e um símbolo duradouro da engenharia romana.</p>
-                <img class="imagens" src="https://dicasdaitalia.com.br/wp-content/uploads/sites/11/2019/12/coliseu-roma.jpg" alt="Colisseu de Roma">
+                <p class="detalhes">O Coliseu de Roma, também conhecido como Anfiteatro Flaviano, é um dos monumentos mais icônicos da Roma Antiga. Construído no século I d.C., o Coliseu era usado para eventos públicos, como lutas de gladiadores e espetáculos. Com capacidade para cerca de 50.000 espectadores, o Coliseu é uma das sete maravilhas do mundo moderno e um símbolo duradouro da engenharia romana.</p>
+                <img class="imagens" src="https://dicasdaitalia.com.br/wp-content/uploads/sites/11/2019/12/coliseu-roma.jpg" alt="Coliseu de Roma">
             </div>
             <footer id="rodape">
             <p>Desenvolvido por: <strong>Kaique Marques</strong></p>
