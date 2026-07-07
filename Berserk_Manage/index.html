@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserk Vôlei - Painel de Gestão</title>
+    <link rel="icon" href="image/icone.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <img src="image/icone.png" alt="Logo Berserk" class="logo">
+            <h2>BERSERK<span>VÔLEI</span></h2>
+        </div>
+        <nav class="nav-links">
+            <button class="nav-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="nav-btn" data-tab="jogadores">🏐 Jogadores</button>
+            <button class="nav-btn" data-tab="treinos">🏋️ Treinos</button>
+            <button class="nav-btn" data-tab="calendario">📅 Calendário</button>
+            <button class="nav-btn" data-tab="estatisticas">📈 Estatísticas</button>
+            <button class="nav-btn" data-tab="financeiro">💰 Financeiro</button>
+            <button class="nav-btn" data-tab="materiais">🎒 Materiais</button>
+            <button class="nav-btn" data-tab="patrocinios">🤝 Patrocínios</button>
+            <button class="nav-btn admin-only" data-tab="admin">⚙️ Administração</button>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <h1>Painel de Gestão</h1>
+            <div class="role-switch">
+                <span id="roleLabel">Modo: <strong>Visitante</strong></span>
+                <button id="toggleRoleBtn" class="btn-role">Área do Admin</button>
+            </div>
+        </header>
+
+        <section id="dashboard" class="tab-content active">
+            <h2>Visão Geral do Time</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Total de Jogadores</h3>
+                    <p class="stat-number" id="dash-players-count">0</p>
+                </div>
+                <div class="card">
+                    <h3>Próximo Treino</h3>
+                    <p class="stat-text" id="dash-next-training">Nenhum agendado</p>
+                </div>
+                <div class="card">
+                    <h3>Caixa Atual</h3>
+                    <p class="stat-number text-green" id="dash-balance">R$ 0,00</p>
+                </div>
+                <div class="card">
+                    <h3>Patrocínios Ativos</h3>
+                    <p class="stat-number" id="dash-sponsors-count">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="jogadores" class="tab-content">
+            <h2>Elenco Berserk</h2>
+            <input type="text" id="searchJogador" class="search-bar"
+                placeholder="🔍 Pesquisar jogador pelo nome ou apelido...">
+
+            <div class="panel admin-only mb-2">
+                <h3>+ Novo Jogador</h3>
+                <form id="playerForm">
+                    <div class="form-grid">
+                        <input type="text" id="playerName" placeholder="Nome Completo" required>
+                        <input type="text" id="playerApelido" placeholder="Apelido" required>
+                        <input type="number" id="playerIdade" placeholder="Idade" required>
+                        <input type="number" id="playerNumber" placeholder="Número da Camisa" required>
+                        <select id="playerPosition" required>
+                            <option value="">Selecione a Posição</option>
+                            <option value="Levantador">Levantador</option>
+                            <option value="Ponteiro">Ponteiro</option>
+                            <option value="Central">Central</option>
+                            <option value="Oposto">Oposto</option>
+                            <option value="Líbero">Líbero</option>
+                        </select>
+                        <input type="text" id="playerHeight" placeholder="Altura (ex: 1.88m)" required>
+                        <select id="playerStatus" required>
+                            <option value="Ativo">🟢 Ativo</option>
+                            <option value="Parcial">🟡 Parcial</option>
+                            <option value="Inativo">🔴 Inativo</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Salvar Jogador</button>
+                </form>
+            </div>
+            <div class="players-grid" id="playersList"></div>
+        </section>
+
+        <section id="treinos" class="tab-content">
+            <h2>Rotina de Treinos e Chamada</h2>
+            <input type="text" id="searchTreino" class="search-bar"
+                placeholder="🔍 Pesquisar treino por data ou foco...">
+
+            <div class="panel admin-only mb-2">
+                <h3>+ Adicionar Treino</h3>
+                <form id="treinoForm">
+                    <div class="form-grid">
+                        <input type="date" id="treinoData" required title="Data do Treino">
+                        <input type="time" id="treinoHora" required title="Horário">
+                        <input type="text" id="treinoFoco" placeholder="Foco técnico" required>
+                        <input type="text" id="treinoLocal" placeholder="Local/Ginásio" required>
+                        <input type="text" id="treinoProf" placeholder="Nome do Professor" required>
+                        <select id="treinoStatus" required>
+                            <option value="Agendado">⏳ Vai Acontecer (Agendado)</option>
+                            <option value="Concluido">✅ Concluído</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Criar Treino</button>
+                </form>
+            </div>
+            <div id="treinosList"></div>
+        </section>
+
+        <section id="calendario" class="tab-content">
+            <h2>Calendário de Jogos</h2>
+            <div class="panel admin-only mb-2">
+                <form id="calendarioForm">
+                    <div class="form-grid">
+                        <input type="text" id="calData" placeholder="Data (ex: 15/07)" required>
+                        <input type="text" id="calAdversario" placeholder="Adversário ou Evento" required>
+                        <input type="text" id="calTipo" placeholder="Tipo (ex: Amistoso)" required>
+                        <input type="text" id="calHora" placeholder="Horário (ex: 16:00)" required>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Agendar</button>
+                </form>
+            </div>
+            <div id="calendarioList"></div>
+        </section>
+
+        <section id="estatisticas" class="tab-content">
+            <h2>Estatísticas da Temporada</h2>
+            <div class="panel admin-only mb-2">
+                <form id="estatisticasForm">
+                    <div class="form-grid">
+                        <input type="number" id="estVitorias" placeholder="Vitórias" required>
+                        <input type="number" id="estDerrotas" placeholder="Derrotas" required>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Atualizar</button>
+                </form>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Vitórias</h3>
+                    <p class="stat-number text-green" id="view-vitorias">0</p>
+                </div>
+                <div class="card">
+                    <h3>Derrotas</h3>
+                    <p class="stat-number text-red" id="view-derrotas">0</p>
+                </div>
+                <div class="card">
+                    <h3>Aproveitamento</h3>
+                    <p class="stat-number" id="view-aproveitamento">0%</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="financeiro" class="tab-content">
+            <h2>Controle Financeiro</h2>
+            <div class="panel admin-only mb-2">
+                <form id="financeiroForm">
+                    <div class="form-grid">
+                        <input type="number" step="0.01" id="finCaixa" placeholder="Caixa (R$)" required>
+                        <input type="text" id="finReceita" placeholder="Receita Esperada" required>
+                        <input type="text" id="finCusto" placeholder="Próximo Custo" required>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Atualizar Financeiro</button>
+                </form>
+            </div>
+            <div class="panel">
+                <p class="mt-1">📈 <strong>Receita Esperada:</strong> <span id="view-receita">-</span></p>
+                <p class="mt-1">💸 <strong>Próximo Custo:</strong> <span id="view-custo">-</span></p>
+            </div>
+        </section>
+
+        <section id="materiais" class="tab-content">
+            <h2>Inventário</h2>
+            <div class="panel admin-only mb-2">
+                <form id="materialForm">
+                    <div class="form-grid">
+                        <input type="text" id="matItem" placeholder="Nome do Material" required>
+                        <input type="text" id="matQtd" placeholder="Quantidade" required>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Adicionar</button>
+                </form>
+            </div>
+            <ul class="list-group panel" id="materiaisList"></ul>
+        </section>
+
+        <section id="patrocinios" class="tab-content">
+            <h2>Nossos Patrocinadores</h2>
+            <div class="panel admin-only mb-2">
+                <form id="patrocinioForm">
+                    <div class="form-grid">
+                        <input type="text" id="patNome" placeholder="Nome da Empresa" required>
+                        <input type="text" id="patBeneficio" placeholder="Tipo de Apoio" required>
+                    </div>
+                    <button type="submit" class="btn-primary mt-1">Salvar Parceiro</button>
+                </form>
+            </div>
+            <div class="cards-grid" id="patrociniosList"></div>
+        </section>
+
+        <section id="admin" class="tab-content">
+            <h2>Configurações</h2>
+            <div class="panel">
+                <p>O sistema está conectado ao Firebase na nuvem.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="modalEditOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modalEditOverlay')">×</button>
+            <h2>Editar Jogador</h2>
+            <form id="editPlayerForm">
+                <input type="hidden" id="editPlayerId">
+                <div class="form-grid">
+                    <input type="text" id="editPlayerName" required>
+                    <input type="text" id="editPlayerApelido" required>
+                    <input type="number" id="editPlayerIdade" required>
+                    <input type="number" id="editPlayerNumber" required>
+                    <select id="editPlayerPosition" required>
+                        <option value="Levantador">Levantador</option>
+                        <option value="Ponteiro">Ponteiro</option>
+                        <option value="Central">Central</option>
+                        <option value="Oposto">Oposto</option>
+                        <option value="Líbero">Líbero</option>
+                    </select>
+                    <input type="text" id="editPlayerHeight" required>
+                    <select id="editPlayerStatus" required>
+                        <option value="Ativo">🟢 Ativo</option>
+                        <option value="Parcial">🟡 Parcial</option>
+                        <option value="Inativo">🔴 Inativo</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary mt-1">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="modalAvaliacaoOverlay" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modalAvaliacaoOverlay')">×</button>
+            <h2 id="avNameTitle">Avaliação</h2>
+            <div id="avViewContent"></div>
+            <form id="avEditForm" class="admin-only mt-2"
+                style="display:none; border-top: 1px solid #323238; padding-top: 15px;">
+                <h3 style="color:var(--primary-color)">Editar Avaliação (Admin)</h3>
+                <input type="hidden" id="avPlayerId">
+                <div class="stats-grid">
+                    <div>Saque (0-10): <input type="number" id="avSaque" min="0" max="10"></div>
+                    <div>Passe (0-10): <input type="number" id="avPasse" min="0" max="10"></div>
+                    <div>Ataque (0-10): <input type="number" id="avAtaque" min="0" max="10"></div>
+                    <div>Bloqueio (0-10): <input type="number" id="avBloqueio" min="0" max="10"></div>
+                </div>
+                <div style="margin-top: 10px;">
+                    Avaliação Geral: <textarea id="avGeral" rows="2" placeholder="Descreva o jogador..."></textarea>
+                </div>
+                <div style="margin-top: 10px;">
+                    O que precisa melhorar: <textarea id="avMelhorar" rows="2"></textarea>
+                </div>
+                <div style="margin-top: 10px;">
+                    Link de Vídeo (Treino recomendado): <input type="text" id="avVideo">
+                </div>
+                <button type="submit" class="btn-primary mt-1">Salvar Avaliação</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
