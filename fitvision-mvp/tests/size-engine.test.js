@@ -1,0 +1,10 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {recommend} from '../src/domain/size-engine.js';
+import {products,demoProfile} from '../src/domain/catalog.js';
+test('perfil A regular recomenda P e oversized recomenda G',()=>{assert.equal(recommend(demoProfile,products[0],'regular').recommendedSize,'P');assert.equal(recommend(demoProfile,products[0],'oversized').recommendedSize,'G');});
+test('perfil B com peito 100 recomenda G regular',()=>assert.equal(recommend({...demoProfile,chest:100},products[0],'regular').recommendedSize,'G'));
+test('corpo fora da tabela não recebe tamanho',()=>assert.equal(recommend({...demoProfile,chest:160},products[0]).recommendedSize,null));
+test('medidas inválidas e preferência desconhecida são rejeitadas',()=>{for(const value of [NaN,Infinity,0,'88'])assert.throws(()=>recommend({...demoProfile,chest:value},products[0]));assert.throws(()=>recommend(demoProfile,products[0],'unknown'));});
+test('calça compara cintura e quadril, e rejeita peça apertada',()=>{const result=recommend(demoProfile,products[2]);assert.equal(result.fit.length,2);assert.equal(recommend({...demoProfile,waist:190},products[2]).recommendedSize,null);});
+test('tabela defeituosa é rejeitada',()=>assert.throws(()=>recommend(demoProfile,{...products[0],variants:[{size:'P',chest:NaN}]})));
