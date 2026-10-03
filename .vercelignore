@@ -1,0 +1,6 @@
+node_modules
+tests
+docs
+preview-*.png
+scripts/create-garments.cjs
+*.zip
